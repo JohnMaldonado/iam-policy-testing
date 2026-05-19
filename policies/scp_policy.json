@@ -1,0 +1,60 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyNonApprovedRegions",
+      "Effect": "Deny",
+      "NotAction": [
+        "waf:*",
+        "trustedadvisor:*",
+        "support:*",
+        "sts:*",
+        "route53:*",
+        "iam:*",
+        "health:*",
+        "globalaccelerator:*",
+        "cloudfront:*",
+        "ce:*",
+        "budgets:*"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringNotEquals": {
+          "aws:RequestedRegion": [
+            "us-east-1",
+            "eu-west-1"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "DenyCloudTrailModification",
+      "Effect": "Deny",
+      "Action": [
+        "cloudtrail:UpdateTrail",
+        "cloudtrail:StopLogging",
+        "cloudtrail:RemoveTags",
+        "cloudtrail:PutEventSelectors",
+        "cloudtrail:DeleteTrail"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyLeaveOrganization",
+      "Effect": "Deny",
+      "Action": "organizations:LeaveOrganization",
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyRootUserActions",
+      "Effect": "Deny",
+      "Action": "*",
+      "Resource": "*",
+      "Condition": {
+        "StringLike": {
+          "aws:PrincipalArn": "arn:aws:iam::*:root"
+        }
+      }
+    }
+  ]
+}

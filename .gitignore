@@ -1,0 +1,22 @@
+# Terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+*.tfplan
+crash.log
+
+# Sensitive outputs
+*.key
+*.pem
+secrets/
+
+# Python
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
+
+# macOS
+.DS_Store

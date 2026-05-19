@@ -1,0 +1,6 @@
+aws_region          = "us-east-1"
+account_id          = "866934333672"
+resource_prefix     = "jhon"
+developer_user_name = "developer-test"
+vpc_cidr            = "10.99.0.0/16"
+public_subnet_cidr  = "10.99.1.0/24"
